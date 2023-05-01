@@ -3,4 +3,5 @@ This algorithm takes in a drawn numbers through the form of hashmarks and dots, 
 
 
 Video:
-https://youtu.be/oVBJl9COs3c
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/oVBJl9COs3c)
+
