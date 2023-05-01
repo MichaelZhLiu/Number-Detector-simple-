@@ -56,10 +56,8 @@ void SetData() {
                 string Buffer = TrainingDatas[x].DotData[e];
 
                 char TempSymbol = Buffer[z]; // Use char instead of string for indexing
-                cout << TempSymbol << endl;
 
                 if (TempSymbol == '#') { // Compare with char instead of string
-                    cout << "add" << endl;
                     Preferences[x].PreferencePerDot[z]++;
                 }
             }
@@ -100,9 +98,6 @@ void Test(string TestString)
             Difference += abs(Preferences[i].PreferencePerDot[x] - TestStringAsDigits[x]);
         }
 
-
-        cout << Difference << endl;
-
         if (LeastDifference > Difference)
         {
             LeastDifference = Difference;
@@ -135,7 +130,7 @@ int main()
     TrainingDatas[1].DotData.push_back("...##...#.#..#..#.....#.######");
     TrainingDatas[1].DotData.push_back("...##...#.#..#..#.....#..#####");
     TrainingDatas[2].DotData.push_back("..###..#...#....#....#...#####");
-    TrainingDatas[3].DotData.push_back("...##...#.#..#..#.....#..#####");
+    TrainingDatas[3].DotData.push_back("..###..#...#....#..#...#..###.");
     TrainingDatas[4].DotData.push_back("....#....##...#.#..####.....#.");
     TrainingDatas[5].DotData.push_back("..###..#......###.....#..####.");
     TrainingDatas[6].DotData.push_back("..###..#.....####..#...#..###.");
@@ -147,14 +142,49 @@ int main()
     TrainingDatas[0].DotData.push_back("..###..#...#.#.#.#.#...#..###.");
 
 
+    char ContinueProgramAnswer;
+
     SetData();
+    bool ContinueProgram = true;
+    while (ContinueProgram) 
+    {
+        bool AcceptedInput = true;
 
-    cout << "Input Number Drawing: ";
-    cin >> InputedNumberDrawing;
+        cout << "Input Number Drawing: ";
+        cin >> InputedNumberDrawing;
 
-    Test(InputedNumberDrawing);
+        for (int i = 0; i < InputedNumberDrawing.length(); i++)
+        {
+            if (InputedNumberDrawing[i] != '.' && InputedNumberDrawing[i] != '#') 
+            {
+                AcceptedInput = false;
+            }
+        }
 
-    cout << "Most likely inputed value is " << MostLikleyInputedValue << endl;
+        if (AcceptedInput == true) 
+        {
+     
+            Test(InputedNumberDrawing);
+            cout << "Most likely inputed value is " << MostLikleyInputedValue << endl;
+        }
+        else 
+        {
+            cout << "Please Only Input Periods Or Hashmarks";
+            cout << endl;
+        }
+
+        cout << "Ask another number? ";
+        cin >> ContinueProgramAnswer;
+        ContinueProgramAnswer = tolower(ContinueProgramAnswer);
+        if (ContinueProgramAnswer == 'y' || ContinueProgramAnswer == 'yea' || ContinueProgramAnswer == 'yes' || ContinueProgramAnswer == 'yeah' || ContinueProgramAnswer == 'ye')
+        {
+            ContinueProgram = true;
+        }
+        else
+        {
+            exit(0);
+        }
+    }
 }
 /*
 *
